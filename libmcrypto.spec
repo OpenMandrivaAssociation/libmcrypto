@@ -17,7 +17,7 @@ URL:		http://www.minisip.org/
 License:	GPL
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-#BuildRequires:  openssl-devel >= 0.9.8
+BuildRequires:  openssl-devel >= 0.9.8
 BuildRequires:	libmnetutil-devel >= 0.3.1-3399.0
 
 %description
