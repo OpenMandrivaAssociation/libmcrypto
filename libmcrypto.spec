@@ -1,7 +1,7 @@
 %define name	libmcrypto
 %define oname	mcrypto
 %define version 0.3.1
-%define svn	3399
+%define svn	3403
 %define release %mkrel %svn.1
 
 %define major	0
