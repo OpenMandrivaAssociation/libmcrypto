@@ -1,11 +1,12 @@
 %define name	libmcrypto
 %define oname	mcrypto
 %define version 0.3.1
-%define svn	3403
+%define svn	3565
 %define release %mkrel %svn.1
 
 %define major	0
 %define libname %mklibname %{oname} %major
+%define develname %mklibname %{oname} -d
 
 Name: 	 	%{name}
 Summary: 	Cryptography library from MiniSip
@@ -18,7 +19,7 @@ License:	GPL
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:  openssl-devel >= 0.9.8
-BuildRequires:	libmnetutil-devel >= 0.3.1-3399.0
+BuildRequires:	libmnetutil-devel >= 0.3.1-3565.0
 
 %description
 The libmcrypto library provides cryptographic encryption and hashing
@@ -27,17 +28,18 @@ interfaces that are leveraged by the Minisip application stack.
 %package -n 	%{libname}
 Summary:        Dynamic libraries from %name
 Group:          System/Libraries
+Provides:       %{oname} = %{version}-%{release}
 
 %description -n %{libname}
 Dynamic libraries from %name.
 
-%package -n 	%{libname}-devel
+%package -n 	%{develname}
 Summary: 	Header files and static libraries from %name
 Group: 		Development/C
 Requires: 	%{libname} >= %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %{libname}-devel
+%description -n %{develname}
 Libraries and includes files for developing programs based on %name.
 
 %prep
@@ -60,9 +62,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}
+%{_libdir}/*.so.%{major}.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog NEWS README 
 %{_libdir}/pkgconfig/%name.pc
